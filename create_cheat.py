@@ -31,21 +31,24 @@ file.write("Target Camera 3/3")
 
 var = load_add + 1
 add = hex(var - 0x8800000).replace("0x", "")
+add2 = hex(var - 0x8800000 + 2).replace("0x", "")
 
 file.write(
     # left
     "_L 0xD0000003 0x10000180\n"
-    f'_L 0xD{add:0>7} 0x00300000\n'
-    f"_L 0x30200004 0x{add:0>8}\n"
-    f'_L 0xD{add:0>7} 0x00000000\n'
-    f"_L 0x0{add:0>7} 0x00000008\n"
+    f"_L 0xE1020000 0x0{add2:0>7}\n"
+    f"_L 0xE0010000 0x3{add:0>7}\n"
+    f"_L 0x30400004 0x0{add:0>7}\n"
+    f"_L 0x0{add2:0>7} 0x00000001\n"
     
-    # right
-    "_L 0xD0000003 0x10000120\n"
-    f'_L 0xD{add:0>7} 0x0020000C\n'
-    f"_L 0x30100004 0x{add:0>8}\n"
-    f'_L 0xD{add:0>7} 0x0000000C\n'
-    f"_L 0x0{add:0>7} 0x00000000\n" 
+    "_L 0xD0000002 0x10000120\n"
+    f"_L 0xE1010000 0x0{add2:0>7}\n"
+    f"_L 0x30300004 0x0{add:0>7}\n"
+    f"_L 0x0{add2:0>7} 0x00000001\n"
+    
+    "_L 0xD0000001 0x30000120\n"
+    "_L 0xD0000000 0x30000180\n"
+    f"_L 0x0{add2:0>7} 0x00000000\n"
 )
 
 file.write("Target Camera UI 1/2")

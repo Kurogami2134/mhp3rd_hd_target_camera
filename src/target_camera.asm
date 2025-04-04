@@ -31,7 +31,7 @@ icon_y equ 225
 .createfile "./bin/target_cam.bin", 0x0B100000
 
 enabled:
-    .byte   1
+    .byte   0
 selected_monster:
     .byte   0
 .align 4
